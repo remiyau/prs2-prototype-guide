@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Getting Started with GitLab – No Dev Experience Required</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      color: #172033;
+      background: #f8fafc;
+      padding: 40px 20px;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container { max-width: 760px; margin: 0 auto; }
+    h1 { font-size: 2rem; font-weight: 800; margin-bottom: 8px; }
+    .subtitle { font-size: 1.1rem; color: #55647c; margin-bottom: 40px; }
+    .prereq {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-bottom: 40px;
+    }
+    .prereq h2 { font-size: 1rem; font-weight: 700; color: #1e40af; margin-bottom: 8px; }
+    .prereq ul { list-style: none; padding: 0; }
+    .prereq li { padding: 4px 0; padding-left: 24px; position: relative; color: #253654; }
+    .prereq li::before { content: "✓"; position: absolute; left: 0; color: #286af8; font-weight: 700; }
+    .prereq a { color: #286af8; text-decoration: underline; }
+    .step {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+    .step-number {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px;
+      background: #286af8; color: #fff; border-radius: 50%;
+      font-size: 0.875rem; font-weight: 700; margin-bottom: 12px;
+    }
+    .step h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+    .step p { color: #253654; margin-bottom: 12px; }
+    .step p:last-child { margin-bottom: 0; }
+    .code-block {
+      background: #1e293b; color: #e2e8f0;
+      border-radius: 8px; padding: 14px 18px;
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 0.84rem; line-height: 1.8;
+      overflow-x: auto; margin: 12px 0;
+      white-space: pre-wrap; word-break: break-all;
+    }
+    .code-block .comment { color: #94a3b8; }
+    .code-block .highlight { color: #7dd3fc; }
+    .tip {
+      background: #f0fdf4; border-left: 3px solid #22c55e;
+      border-radius: 0 8px 8px 0; padding: 12px 16px;
+      margin: 12px 0; font-size: 0.9rem; color: #166534;
+    }
+    .warning {
+      background: #fffbeb; border-left: 3px solid #f59e0b;
+      border-radius: 0 8px 8px 0; padding: 12px 16px;
+      margin: 12px 0; font-size: 0.9rem; color: #92400e;
+    }
+    .danger {
+      background: #fef2f2; border-left: 3px solid #ef4444;
+      border-radius: 0 8px 8px 0; padding: 12px 16px;
+      margin: 12px 0; font-size: 0.9rem; color: #991b1b;
+    }
+    ol.simple { padding-left: 20px; margin: 8px 0; }
+    ol.simple li { padding: 6px 0; color: #253654; }
+    ul.simple { padding-left: 20px; margin: 8px 0; list-style: disc; }
+    ul.simple li { padding: 4px 0; color: #253654; }
+    kbd {
+      display: inline-block; padding: 2px 6px;
+      background: #f1f5f9; border: 1px solid #d8e0ea; border-radius: 4px;
+      font-family: 'SF Mono', monospace; font-size: 0.8rem; color: #253654;
+      box-shadow: 0 1px 0 #d8e0ea;
+    }
+    code {
+      background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 4px;
+      padding: 1px 5px; font-family: 'SF Mono', monospace; font-size: 0.84rem;
+    }
+    .platform-label {
+      display: inline-block;
+      background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 4px;
+      padding: 2px 8px; font-size: 0.75rem; font-weight: 700;
+      color: #55647c; margin-bottom: 8px; text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .divider { border: none; border-top: 1px solid #e2e8f0; margin: 40px 0; }
+    .section-label {
+      font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.05em; color: #55647c; margin-bottom: 12px;
+    }
+    .footer { text-align: center; color: #55647c; font-size: 0.875rem; margin-top: 40px; }
+    .ref-table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+    .ref-table th, .ref-table td {
+      padding: 10px 14px; text-align: left; font-size: 0.875rem;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .ref-table th { background: #f1f5f9; font-weight: 600; color: #55647c; }
+    .ref-table td { color: #253654; }
+    a { color: #286af8; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Getting Started with GitLab</h1>
+
+    <div class="prereq">
+      <h2>What you need</h2>
+      <ul>
+        <li>A computer running <strong>macOS</strong></li>
+        <li>A <strong>GitLab account</strong> on <a href="https://sgts.gitlab-dedicated.com" target="_blank">sgts.gitlab-dedicated.com</a></li>
+        <li><strong>Git</strong> installed (Step 1 below)</li>
+        <li><strong>Visual Studio Code</strong> — download from <a href="https://code.visualstudio.com" target="_blank">code.visualstudio.com</a></li>
+      </ul>
+    </div>
+
+    <!-- STEP 1 -->
+    <div class="step">
+      <div class="step-number">1</div>
+      <h3>Install Git</h3>
+
+      <p><span class="platform-label">macOS</span></p>
+      <ol class="simple">
+        <li>Open <strong>Terminal</strong> (press <kbd>Cmd</kbd> + <kbd>Space</kbd>, type "Terminal", press Enter)</li>
+        <li>Type <code>git --version</code> and press Enter</li>
+        <li>If Git is not installed, macOS will ask you to install the Xcode Command Line Tools. Click <strong>Install</strong> and wait for it to finish.</li>
+      </ol>
+
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="step">
+      <div class="step-number">2</div>
+      <h3>Configure Git with your name and email</h3>
+      <p>This tells Git who you are. Run these commands in Terminal (Mac) or Git Bash (Windows), replacing the placeholders with your actual name and email:</p>
+      <div class="code-block">git config --global user.name "<span class="highlight">Your Full Name</span>"
+git config --global user.email "<span class="highlight">your.email@example.com</span>"</div>
+      <div class="warning">
+        <strong>Important:</strong> Use the same email address linked to your GitLab account.
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="step">
+      <div class="step-number">3</div>
+      <h3>Create an SSH Key</h3>
+      <p>An SSH key lets your computer talk to GitLab securely — no password needed every time you push or pull.</p>
+
+      <p><strong>Generate the key:</strong></p>
+      <div class="code-block">ssh-keygen -t ed25519 -C "<span class="highlight">your.email@example.com</span>"</div>
+      <ol class="simple">
+        <li>Press <strong>Enter</strong> to accept the default file location</li>
+        <li>When asked for a passphrase, press <strong>Enter</strong> to skip (or type one for extra security)</li>
+      </ol>
+
+      <p style="margin-top: 16px;"><strong>Add the key to the SSH agent:</strong></p>
+      <div class="code-block">ssh-add ~/.ssh/id_ed25519</div>
+
+      <p><strong>Copy your public key to clipboard:</strong></p>
+      <p><span class="platform-label">macOS</span></p>
+      <div class="code-block">tr -d '\n' < ~/.ssh/id_ed25519.pub | pbcopy</div>
+      <p><span class="platform-label">Windows (Git Bash)</span></p>
+      <div class="code-block">cat ~/.ssh/id_ed25519.pub | clip</div>
+
+      <p><strong>Add the key to GitLab:</strong></p>
+      <ol class="simple">
+        <li>Go to <a href="https://sgts.gitlab-dedicated.com" target="_blank">sgts.gitlab-dedicated.com</a> and sign in</li>
+        <li>Click your <strong>avatar</strong> (top right) → <strong>Edit profile</strong></li>
+        <li>In the left sidebar, select <strong>Access</strong> → <strong>SSH keys</strong></li>
+        <li>Click <strong>Add new key</strong></li>
+        <li>Paste the key into the <strong>Key</strong> field. It should look something like this:</li>
+      </ol>
+      <div class="code-block">ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAI... your.email@example.com</div>
+      <ol class="simple" start="6">
+        <li>Give it a title (e.g. "Work Laptop 2025")</li>
+        <li>Click <strong>Add key</strong></li>
+      </ol>
+
+      <p style="margin-top: 16px;"><strong>Test the connection:</strong></p>
+      <div class="code-block">ssh -T git@sgts.gitlab-dedicated.com</div>
+      <div class="tip">
+        <strong>Success:</strong> You should see a welcome message with your GitLab username.
+      </div>
+    </div>
+
+    <!-- STEP 3.5 -->
+    <div class="step">
+      <div class="step-number">4</div>
+      <h3>Configure your signing key</h3>
+      <p>This repository requires commits to be <strong>signed</strong> with your SSH key. Run this command:</p>
+      <div class="code-block">git config --global user.signingkey ~/.ssh/id_ed25519.pub</div>
+      <div class="tip">
+        <strong>Why?</strong> Without this, you'll get an error when trying to commit: <code>fatal: either user.signingkey or gpg.ssh.defaultKeyCommand needs to be configured</code>
+      </div>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="step">
+      <div class="step-number">5</div>
+      <h3>Clone the repository</h3>
+      <p>Cloning downloads a copy of the project onto your computer.</p>
+      <ol class="simple">
+        <li>Open Terminal (Mac) or Git Bash (Windows)</li>
+        <li>Navigate to your Desktop:</li>
+      </ol>
+      <div class="code-block">cd ~/Desktop</div>
+      <ol class="simple" start="3">
+        <li>Clone the repo:</li>
+      </ol>
+      <div class="code-block">git clone git@sgts.gitlab-dedicated.com:wog/gvt/pic/prs/prs2-product-requirements.git</div>
+      <ol class="simple" start="4">
+        <li>Open the folder in VS Code:</li>
+      </ol>
+      <div class="code-block">code prs2-product-requirements</div>
+      <div class="tip">
+        <strong>Done!</strong> You now have the full project on your computer. A folder called <code>prs2-product-requirements</code> appears on your Desktop.
+      </div>
+    </div>
+
+    <!-- STEP 6 -->
+    <div class="step">
+      <div class="step-number">6</div>
+      <h3>Start Claude Code in VS Code</h3>
+      <p>Claude Code is an AI assistant that runs in your terminal. It can help you create branches, edit files, and raise merge requests — all through plain English.</p>
+      <ol class="simple">
+        <li>In VS Code, open a new terminal: <kbd>Ctrl</kbd> + <kbd>`</kbd> (Mac: <kbd>Cmd</kbd> + <kbd>`</kbd>) — or go to <strong>Terminal → New Terminal</strong> from the top menu</li>
+        <li>Type the following and press Enter:</li>
+      </ol>
+      <div class="code-block">claude</div>
+      <div class="tip">
+        <strong>That's it!</strong> Claude is now running inside your project. You can ask it to create a branch, make changes, or walk you through anything in this guide.
+      </div>
+    </div>
+
+    <!-- STEP 7 -->
+    <div class="step">
+      <div class="step-number">7</div>
+      <h3>Create a new branch</h3>
+      <p>Always work on a <strong>branch</strong> — never directly on <code>main</code>. Branches keep your changes isolated until they are reviewed.</p>
+      <ol class="simple">
+        <li>In VS Code, look at the <strong>bottom-left corner</strong> — it shows the current branch name (probably <code>main</code>)</li>
+        <li>Click it. A dropdown appears at the top of the screen.</li>
+        <li>Select <strong>Create new branch...</strong></li>
+        <li>Type a short name using hyphens, no spaces. For example:</li>
+      </ol>
+      <div class="code-block">update-ahpc-requirements</div>
+      <ol class="simple" start="5">
+        <li>Press <strong>Enter</strong>. VS Code switches to your new branch automatically.</li>
+      </ol>
+      <div class="danger">
+        <strong>Never commit directly to <code>main</code>.</strong> If you accidentally do, don't push — ask a team member for help.
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- QUICK REFERENCE -->
+    <p class="section-label">Quick Reference</p>
+    <table class="ref-table">
+      <thead>
+        <tr><th>Task</th><th>How</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Open Terminal</td><td>Mac: <kbd>Cmd</kbd> + <kbd>Space</kbd> → type "Terminal"</td></tr>
+        <tr><td>Open Git Bash</td><td>Windows: Start menu → Git Bash</td></tr>
+        <tr><td>See your current branch</td><td>Bottom-left corner of VS Code</td></tr>
+        <tr><td>GitLab SSH keys settings</td><td>Avatar → Edit profile → Access → SSH keys</td></tr>
+      </tbody>
+    </table>
+
+
+    <hr class="divider">
+    <p class="footer">PRS2.0 UX – GitLab Setup Guide<br>Last updated: July 2026</p>
+  </div>
+</body>
+</html>
