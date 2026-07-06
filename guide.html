@@ -206,6 +206,31 @@
       <div class="warning">
         <strong>Important:</strong> Share ALL relevant screens — dashboards, profile pages, tab states, modals, and empty states. The more Claude sees, the more accurate the prototype will be.
       </div>
+
+      <p style="margin-top: 16px;"><strong>Option C: Connect Claude directly to Figma (live connection)</strong></p>
+      <p>If you have Figma Desktop open with Dev Mode MCP enabled, Claude can read your designs directly — no exporting needed. Here's how:</p>
+
+      <ol class="simple">
+        <li><strong>In Claude Code, activate Figma mode</strong> — type <code>/figma-local-mcp</code> and press Enter. This tells Claude to get ready to look at Figma.</li>
+        <li><strong>In Figma, navigate to the screen you want to share</strong> — open your design file and find the frame or component.</li>
+        <li><strong>Copy the link to that node</strong> — right-click the frame on the canvas and choose <strong>Copy/Paste as → Copy link</strong> (or press <kbd>Cmd</kbd> + <kbd>L</kbd>). The link will look like:<br>
+          <code style="font-size: 0.82rem; word-break: break-all;">https://www.figma.com/design/QXnbe.../SPB-Registration-flow?node-id=6450-253266</code></li>
+        <li><strong>Paste the link into Claude Code</strong> — go back to the Claude conversation and paste the link, then press Enter.</li>
+        <li><strong>Tell Claude what you need</strong> — once Claude confirms it can see the node, ask it to take a screenshot, describe the layout, get design tokens, or start building the prototype from it.</li>
+      </ol>
+
+      <div class="tip">
+        <strong>Why use this?</strong> Claude reads the actual design data (layout, spacing, colours, typography) directly from your Figma file — more accurate than screenshots and no exporting needed. You can select different frames one by one during the conversation.
+      </div>
+
+      <div class="info-box">
+        <strong>One-time setup for Option C:</strong>
+        <ol class="simple" style="margin-top: 8px;">
+          <li>Use the <strong>Figma Desktop app</strong> (not the browser version)</li>
+          <li>Enable <strong>Dev Mode MCP</strong> in Figma (Settings → Dev Mode → enable MCP server)</li>
+        </ol>
+        If Claude says "No Figma window open" — check that Figma Desktop is running with a file open. If it times out, try selecting a smaller frame inside the page.
+      </div>
     </div>
 
     <!-- STEP 4 -->
